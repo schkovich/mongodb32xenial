@@ -1,0 +1,15 @@
+{
+  "name": "schkovich-mongodb32xenial",
+  "version": "0.0.1",
+  "author": "Goran Miskovic",
+  "summary": "Manage and install MongoDB 3.2.x on Ubuntu 16.04 LTS (Xenial Xerus)",
+  "license": "MIT",
+  "source": "https://github.com/schkovich/mongodb32xenial",
+  "project_page": "https://github.com/schkovich/mongodb32xenial/wiki",
+  "issues_url": "https://github.com/schkovich/mongodb32xenial/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
