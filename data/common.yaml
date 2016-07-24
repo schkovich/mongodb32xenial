@@ -1,0 +1,20 @@
+mongodb32xenial::version: "3.2.8"
+mongodb32xenial::manage_package_repo: false
+mongodb32xenial::server_package_name: "mongodb-org-server"
+mongodb32xenial::mongodb_service_name: "mongod"
+mongodb32xenial::client_package_name: "mongodb-org-shell"
+mongodb32xenial::port: 27017
+mongodb32xenial::dbname: "xenial"
+mongodb32xenial::dbadmin: "xadmin"
+mongodb32xenial::admin_password: "x32admin"
+mongodb32xenial::dbuser: "xuser"
+mongodb32xenial::password: "x32user"
+
+mongodb32xenial::repo::comment: 'This is MongoDB 3.2 Ubuntu 16.04 LTS (Xenial Xerus) repository'
+mongodb32xenial::repo::location: 'https://repo.mongodb.org/apt/ubuntu'
+mongodb32xenial::repo::release: 'xenial/mongodb-org/3.2'
+mongodb32xenial::repo::repos: 'multiverse'
+mongodb32xenial::repo::key_id: '42F3E95A2C4F08279C4960ADD68FA50FEA312927'
+mongodb32xenial::repo::key_server: 'hkp://keyserver.ubuntu.com:80'
+mongodb32xenial::repo::incl_src: false
+mongodb32xenial::repo::incl_deb: true

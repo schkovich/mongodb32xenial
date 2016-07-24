@@ -7,9 +7,24 @@
   "source": "https://github.com/schkovich/mongodb32xenial",
   "project_page": "https://github.com/schkovich/mongodb32xenial/wiki",
   "issues_url": "https://github.com/schkovich/mongodb32xenial/issues",
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04"
+      ]
+    }
   ],
-  "data_provider": null
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/apt","version_requirement":">= 2.1.0 <3.0.0"},
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.4.0 <5.0.0"},
+    {"name":"puppetlabs/mongodb","version_requirement":">= 0.14.0 <1.0.0"}
+  ],
+  "data_provider": "hiera"
 }
-

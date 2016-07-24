@@ -35,14 +35,55 @@
 # Authors
 # -------
 #
-# Author Name <author@domain.com>
+# Goran Miskovic <schkovich@gmail.com>
 #
 # Copyright
 # ---------
 #
-# Copyright 2016 Your name here, unless otherwise noted.
+# Copyright 2016 Goran Miskovic, unless otherwise noted.
 #
-class mongodb32xenial {
+class mongodb32xenial (
+  # default values are in mongodb32xenial/data
+  $version,
+  $manage_package_repo,
+  $server_package_name,
+  $mongodb_service_name,
+  $client_package_name,
+  $port,
+  $dbname,
+  $dbadmin,
+  $admin_password,
+  $dbuser,
+  $password
+){
 
+  class {"mongodb32xenial::repo": }
+
+  file { "mongodsr":
+    path    => '/etc/systemd/system/mongod.service',
+    backup  => false,
+    ensure  => present,
+    source  => "puppet:///modules/mongodb32xenial/mongod.service",
+    require => Class['mongodb32xenial::repo']
+  }
+
+  class {'::mongodb::globals':
+    version => $version,
+    manage_package_repo => $manage_package_repo,
+    server_package_name => $server_package_name,
+    service_name => $mongodb_service_name,
+    require => File['mongodsr'],
+  }
+
+  class {'::mongodb::server':
+    port    => $port,
+    verbose => true,
+    require => Class['::mongodb::globals']
+  }
+
+  class {'::mongodb::client':
+    package_name => $client_package_name,
+    require => Class['::mongodb::server']
+  }
 
 }
