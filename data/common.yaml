@@ -1,4 +1,4 @@
-mongodb32xenial::version: "3.2.8"
+mongodb32xenial::version: "3.2.9"
 mongodb32xenial::manage_package_repo: false
 mongodb32xenial::server_package_name: "mongodb-org-server"
 mongodb32xenial::mongodb_service_name: "mongod"

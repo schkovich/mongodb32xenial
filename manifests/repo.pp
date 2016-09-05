@@ -3,7 +3,7 @@ class mongodb32xenial::repo (
   $location,
   $release,
   $repos,
-    $key_id,
+  $key_id,
   $key_server,
   $incl_src,
   $incl_deb

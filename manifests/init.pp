@@ -57,22 +57,26 @@ class mongodb32xenial (
   $password
 ){
 
-  class {"mongodb32xenial::repo": }
+  class {'mongodb32xenial::repo': }
 
-  file { "mongodsr":
-    path    => '/etc/systemd/system/mongod.service',
-    backup  => false,
-    ensure  => present,
-    source  => "puppet:///modules/mongodb32xenial/mongod.service",
-    require => Class['mongodb32xenial::repo']
+  if versioncmp($version, '3.2.9') < 0 {
+
+    file { 'mongodsr':
+      ensure  => present,
+      path    => '/etc/systemd/system/mongod.service',
+      backup  => false,
+      source  => 'puppet:///modules/mongodb32xenial/mongod.service',
+      require => Class['mongodb32xenial::repo']
+    }
+
   }
 
   class {'::mongodb::globals':
-    version => $version,
+    version             => $version,
     manage_package_repo => $manage_package_repo,
     server_package_name => $server_package_name,
-    service_name => $mongodb_service_name,
-    require => File['mongodsr'],
+    service_name        => $mongodb_service_name,
+    require             => File['mongodsr'],
   }
 
   class {'::mongodb::server':
@@ -83,7 +87,7 @@ class mongodb32xenial (
 
   class {'::mongodb::client':
     package_name => $client_package_name,
-    require => Class['::mongodb::server']
+    require      => Class['::mongodb::server']
   }
 
 }
