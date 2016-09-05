@@ -68,18 +68,24 @@ class mongodb32xenial (
       source  => 'puppet:///modules/mongodb32xenial/mongod.service',
       require => Class['mongodb32xenial::repo']
     }
-    $required = 'mongodsr'
+
+    class {'::mongodb::globals':
+      version             => $version,
+      manage_package_repo => $manage_package_repo,
+      server_package_name => $server_package_name,
+      service_name        => $mongodb_service_name,
+      require             => File['mongodsr'],
+    }
   } else {
 
-    $required = 'mongodb32xenial::repo'
-  }
+    class {'::mongodb::globals':
+      version             => $version,
+      manage_package_repo => $manage_package_repo,
+      server_package_name => $server_package_name,
+      service_name        => $mongodb_service_name,
+      require             => Class['mongodb32xenial::repo'],
+    }
 
-  class {'::mongodb::globals':
-    version             => $version,
-    manage_package_repo => $manage_package_repo,
-    server_package_name => $server_package_name,
-    service_name        => $mongodb_service_name,
-    require             => File[$required],
   }
 
   class {'::mongodb::server':
